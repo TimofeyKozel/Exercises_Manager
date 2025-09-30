@@ -16,7 +16,7 @@ namespace ExercisesManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new ExerciseForm());
+            Application.Run(new MainForm());
         }
     }
 }

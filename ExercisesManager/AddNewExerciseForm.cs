@@ -16,11 +16,11 @@ namespace ExercisesManager
     public partial class AddNewExerciseForm : Form
     {
 
-        private ExerciseForm _parentForm;
+        private MainForm _parentForm;
 
         DataBase database = new DataBase();
 
-        public AddNewExerciseForm(ExerciseForm parentForm)
+        public AddNewExerciseForm(MainForm parentForm)
         {
             InitializeComponent();
             _parentForm = parentForm;
@@ -28,7 +28,7 @@ namespace ExercisesManager
 
         private void Cancel_Click(object sender, EventArgs e)
         {
-            ExerciseForm c = new ExerciseForm();
+            MainForm c = new MainForm();
             c.Show();
             this.Hide();
         }
@@ -45,28 +45,28 @@ namespace ExercisesManager
 
         private void AddExercise_Click(object sender, EventArgs e)
         {
+            DateTime dateFormat;
             var exercise = ExerciseTxtBox.Text;
             int boolValue = 0;
 
-            DateTime dateFormat;
-
-            if (DateTime.TryParse(DateTxtBox.Text, out dateFormat))
-            {
-                database.openConnection();
-
-                var addQuery = $"insert into exercise_db (checkbox, exercises, till) values ({boolValue}, '{exercise}', '{dateFormat.ToString("yyyy-MM-dd")}')";
+            if (DateTime.TryParse(DateTxtBox.Text, out dateFormat) && ExerciseTxtBox.Text != "")
+            { 
+                string addQuery = $"insert into exercise_db (checkbox, exercises, till) values ({boolValue}, '{exercise}'," +
+                                                                                        $"'{dateFormat.ToString("yyyy-MM-dd")}')";
                 var command = new SqlCommand(addQuery, database.getConnection());
-
+                
+                database.openConnection();
                 command.ExecuteNonQuery();
                 database.closeConnection();
             }
             else
             {
-                MessageBox.Show("Falsche eingabe von Datum oder das Feld leer ist!", "Fehler", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Falsche eingabe von Datum oder das Feld leer ist!", "Fehler", MessageBoxButtons.OK,
+                                                                                                       MessageBoxIcon.Error);
             }
             _parentForm.RefreshDataGridview(_parentForm.ExercisesTable);
 
-            ExerciseForm c = new ExerciseForm();
+            MainForm c = new MainForm();
             c.Show();
             this.Hide();
         }

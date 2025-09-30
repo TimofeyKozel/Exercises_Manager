@@ -32,14 +32,15 @@
             this.DateTxtBox = new System.Windows.Forms.MaskedTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.CleanExercise = new System.Windows.Forms.Button();
-            this.CleanDate = new System.Windows.Forms.Button();
-            this.AddExercise = new System.Windows.Forms.Button();
-            this.Cancel = new System.Windows.Forms.Button();
+            this.CmdCleanTxtBoxUp = new System.Windows.Forms.Button();
+            this.CmdCleanTxtBoxDown = new System.Windows.Forms.Button();
+            this.CmdAddExerciseToTable = new System.Windows.Forms.Button();
+            this.CmdCancel = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ExerciseTxtBox
             // 
+            this.ExerciseTxtBox.BackColor = System.Drawing.SystemColors.Menu;
             this.ExerciseTxtBox.Location = new System.Drawing.Point(197, 98);
             this.ExerciseTxtBox.Name = "ExerciseTxtBox";
             this.ExerciseTxtBox.Size = new System.Drawing.Size(294, 20);
@@ -47,6 +48,7 @@
             // 
             // DateTxtBox
             // 
+            this.DateTxtBox.BackColor = System.Drawing.SystemColors.Menu;
             this.DateTxtBox.Location = new System.Drawing.Point(197, 152);
             this.DateTxtBox.Name = "DateTxtBox";
             this.DateTxtBox.Size = new System.Drawing.Size(294, 20);
@@ -56,6 +58,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.SystemColors.Menu;
             this.label1.Location = new System.Drawing.Point(60, 98);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(104, 18);
@@ -66,61 +69,75 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Menu;
             this.label2.Location = new System.Drawing.Point(60, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(67, 18);
             this.label2.TabIndex = 3;
             this.label2.Text = "Fällig am";
             // 
-            // CleanExercise
+            // CmdCleanTxtBoxUp
             // 
-            this.CleanExercise.Location = new System.Drawing.Point(530, 98);
-            this.CleanExercise.Name = "CleanExercise";
-            this.CleanExercise.Size = new System.Drawing.Size(75, 23);
-            this.CleanExercise.TabIndex = 4;
-            this.CleanExercise.Text = "Löschen";
-            this.CleanExercise.UseVisualStyleBackColor = true;
-            this.CleanExercise.Click += new System.EventHandler(this.CleanExercise_Click);
+            this.CmdCleanTxtBoxUp.BackColor = System.Drawing.SystemColors.GrayText;
+            this.CmdCleanTxtBoxUp.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmdCleanTxtBoxUp.ForeColor = System.Drawing.SystemColors.Menu;
+            this.CmdCleanTxtBoxUp.Location = new System.Drawing.Point(530, 98);
+            this.CmdCleanTxtBoxUp.Name = "CmdCleanTxtBoxUp";
+            this.CmdCleanTxtBoxUp.Size = new System.Drawing.Size(75, 23);
+            this.CmdCleanTxtBoxUp.TabIndex = 4;
+            this.CmdCleanTxtBoxUp.Text = "Löschen";
+            this.CmdCleanTxtBoxUp.UseVisualStyleBackColor = false;
+            this.CmdCleanTxtBoxUp.Click += new System.EventHandler(this.CleanExercise_Click);
             // 
-            // CleanDate
+            // CmdCleanTxtBoxDown
             // 
-            this.CleanDate.Location = new System.Drawing.Point(530, 154);
-            this.CleanDate.Name = "CleanDate";
-            this.CleanDate.Size = new System.Drawing.Size(75, 23);
-            this.CleanDate.TabIndex = 5;
-            this.CleanDate.Text = "Löschen";
-            this.CleanDate.UseVisualStyleBackColor = true;
-            this.CleanDate.Click += new System.EventHandler(this.CleanDate_Click);
+            this.CmdCleanTxtBoxDown.BackColor = System.Drawing.SystemColors.GrayText;
+            this.CmdCleanTxtBoxDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmdCleanTxtBoxDown.ForeColor = System.Drawing.SystemColors.Menu;
+            this.CmdCleanTxtBoxDown.Location = new System.Drawing.Point(530, 154);
+            this.CmdCleanTxtBoxDown.Name = "CmdCleanTxtBoxDown";
+            this.CmdCleanTxtBoxDown.Size = new System.Drawing.Size(75, 23);
+            this.CmdCleanTxtBoxDown.TabIndex = 5;
+            this.CmdCleanTxtBoxDown.Text = "Löschen";
+            this.CmdCleanTxtBoxDown.UseVisualStyleBackColor = false;
+            this.CmdCleanTxtBoxDown.Click += new System.EventHandler(this.CleanDate_Click);
             // 
-            // AddExercise
+            // CmdAddExerciseToTable
             // 
-            this.AddExercise.Location = new System.Drawing.Point(153, 248);
-            this.AddExercise.Name = "AddExercise";
-            this.AddExercise.Size = new System.Drawing.Size(130, 34);
-            this.AddExercise.TabIndex = 6;
-            this.AddExercise.Text = "Ablegen";
-            this.AddExercise.UseVisualStyleBackColor = true;
-            this.AddExercise.Click += new System.EventHandler(this.AddExercise_Click);
+            this.CmdAddExerciseToTable.BackColor = System.Drawing.SystemColors.GrayText;
+            this.CmdAddExerciseToTable.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmdAddExerciseToTable.ForeColor = System.Drawing.SystemColors.Menu;
+            this.CmdAddExerciseToTable.Location = new System.Drawing.Point(153, 248);
+            this.CmdAddExerciseToTable.Name = "CmdAddExerciseToTable";
+            this.CmdAddExerciseToTable.Size = new System.Drawing.Size(130, 34);
+            this.CmdAddExerciseToTable.TabIndex = 6;
+            this.CmdAddExerciseToTable.Text = "Ablegen";
+            this.CmdAddExerciseToTable.UseVisualStyleBackColor = false;
+            this.CmdAddExerciseToTable.Click += new System.EventHandler(this.AddExercise_Click);
             // 
-            // Cancel
+            // CmdCancel
             // 
-            this.Cancel.Location = new System.Drawing.Point(414, 248);
-            this.Cancel.Name = "Cancel";
-            this.Cancel.Size = new System.Drawing.Size(130, 34);
-            this.Cancel.TabIndex = 7;
-            this.Cancel.Text = "Abrechen";
-            this.Cancel.UseVisualStyleBackColor = true;
-            this.Cancel.Click += new System.EventHandler(this.Cancel_Click);
+            this.CmdCancel.BackColor = System.Drawing.SystemColors.GrayText;
+            this.CmdCancel.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmdCancel.ForeColor = System.Drawing.SystemColors.Menu;
+            this.CmdCancel.Location = new System.Drawing.Point(414, 248);
+            this.CmdCancel.Name = "CmdCancel";
+            this.CmdCancel.Size = new System.Drawing.Size(130, 34);
+            this.CmdCancel.TabIndex = 7;
+            this.CmdCancel.Text = "Abrechen";
+            this.CmdCancel.UseVisualStyleBackColor = false;
+            this.CmdCancel.Click += new System.EventHandler(this.Cancel_Click);
             // 
             // AddNewExerciseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(743, 437);
-            this.Controls.Add(this.Cancel);
-            this.Controls.Add(this.AddExercise);
-            this.Controls.Add(this.CleanDate);
-            this.Controls.Add(this.CleanExercise);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.ClientSize = new System.Drawing.Size(707, 428);
+            this.Controls.Add(this.CmdCancel);
+            this.Controls.Add(this.CmdAddExerciseToTable);
+            this.Controls.Add(this.CmdCleanTxtBoxDown);
+            this.Controls.Add(this.CmdCleanTxtBoxUp);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.DateTxtBox);
@@ -139,9 +156,9 @@
         private System.Windows.Forms.MaskedTextBox DateTxtBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button CleanExercise;
-        private System.Windows.Forms.Button CleanDate;
-        private System.Windows.Forms.Button AddExercise;
-        private System.Windows.Forms.Button Cancel;
+        private System.Windows.Forms.Button CmdCleanTxtBoxUp;
+        private System.Windows.Forms.Button CmdCleanTxtBoxDown;
+        private System.Windows.Forms.Button CmdAddExerciseToTable;
+        private System.Windows.Forms.Button CmdCancel;
     }
 }
