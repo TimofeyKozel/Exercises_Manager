@@ -1,24 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Data.SqlClient;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
-using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 namespace ExercisesManager
 {
     public partial class AddNewExerciseForm : Form
     {
 
-        private MainForm _parentForm;
+        private readonly MainForm _parentForm;
 
-        DataBase database = new DataBase();
+        private readonly DataBase _database = new DataBase();
+
 
         public AddNewExerciseForm(MainForm parentForm)
         {
@@ -26,47 +18,93 @@ namespace ExercisesManager
             _parentForm = parentForm;
         }
 
+
+        private void AddNewExerciseForm_Load(object sender, EventArgs e)
+        {
+            CheckChangesTextBoxes();
+        }
+
+
         private void Cancel_Click(object sender, EventArgs e)
         {
-            MainForm c = new MainForm();
+            var c = new MainForm();
             c.Show();
             this.Hide();
         }
+
 
         private void CleanExercise_Click(object sender, EventArgs e)
         {
             ExerciseTxtBox.Text = "";
         }
 
+
         private void CleanDate_Click(object sender, EventArgs e)
         {
             DateTxtBox.Text = "";
         }
 
+
+        private void ExerciseTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            CheckChangesTextBoxes();
+        }
+
+
+        private void DateTxtBox_TextChanged(object sender, EventArgs e)
+        {
+            CheckChangesTextBoxes();
+        }
+
+
+        private void CheckChangesTextBoxes()
+        {
+            CmdAddExerciseToTable.Enabled = !string.IsNullOrWhiteSpace(ExerciseTxtBox.Text) &&
+                              !string.IsNullOrWhiteSpace(DateTxtBox.Text);
+        }
+
+
         private void AddExercise_Click(object sender, EventArgs e)
         {
-            DateTime dateFormat;
-            var exercise = ExerciseTxtBox.Text;
-            int boolValue = 0;
+            var exercise = Convert.ToString(ExerciseTxtBox.Text);
+            const int boolValue = 0;
 
-            if (DateTime.TryParse(DateTxtBox.Text, out dateFormat) && ExerciseTxtBox.Text != "")
-            { 
-                string addQuery = $"insert into exercise_db (checkbox, exercises, till) values ({boolValue}, '{exercise}'," +
-                                                                                        $"'{dateFormat.ToString("yyyy-MM-dd")}')";
-                var command = new SqlCommand(addQuery, database.getConnection());
-                
-                database.openConnection();
-                command.ExecuteNonQuery();
-                database.closeConnection();
+            if (exercise.Contains(";") || exercise.Contains("'") || exercise.Contains("\"") || exercise.Contains("-") || exercise.Contains("\\"))
+            {
+                const string semicolon = ";";
+                const string apostrophe = "'";
+                const string hyphen = "-";
+                const string quotationMark = "\"";
+                const string backSlash = "\\";
+                const string equalSign = "=";
+                const string lessThanSign = "<";
+                const string moreThanSign = ">";
+
+
+                MessageBox.Show($@"Sie können keine Zeichen wie ""{semicolon}""  ""{apostrophe}""  ""{hyphen}""" +
+                                $@"  ""{quotationMark}"" ""{backSlash}"" ""{equalSign}"" ""{lessThanSign}"" ""{moreThanSign}"" benutzen!", @"Fehler",
+                                                                                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            else if (DateTime.TryParse(DateTxtBox.Text, out var dateFormat))
+            {
+                var addQuery =
+                    $"INSERT INTO exercise_db (checkbox, exercises, till) VALUES ({boolValue}, '{exercise}'," +
+                    $"'{dateFormat:yyyy-MM-dd}')";
+                var command = new SqlCommand(addQuery, _database.GetConnection());
+
+                _database.OpenConnection();
+                command.ExecuteNonQuery();
+                _database.CloseConnection();
+            }
+
             else
             {
-                MessageBox.Show("Falsche eingabe von Datum oder das Feld leer ist!", "Fehler", MessageBoxButtons.OK,
-                                                                                                       MessageBoxIcon.Error);
+                MessageBox.Show(@"Falsche Eingabe vom Datum!", @"Fehler", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
-            _parentForm.RefreshDataGridview(_parentForm.ExercisesTable);
+            _parentForm.RefreshDataGridview();
 
-            MainForm c = new MainForm();
+            var c = new MainForm();
             c.Show();
             this.Hide();
         }

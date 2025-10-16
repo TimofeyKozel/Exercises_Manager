@@ -96,7 +96,7 @@
             dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.GrayText;
             dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.Menu;
             this.ExercisesTable.RowsDefaultCellStyle = dataGridViewCellStyle5;
-            this.ExercisesTable.Size = new System.Drawing.Size(734, 371);
+            this.ExercisesTable.Size = new System.Drawing.Size(749, 371);
             this.ExercisesTable.TabIndex = 1;
             this.ExercisesTable.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.ExercisesTable_CellContentClick);
             // 

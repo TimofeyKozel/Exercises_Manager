@@ -1,35 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data.SqlClient;
 
 namespace ExercisesManager
 {
     internal class DataBase
     {
-        SqlConnection sqlConnection = new SqlConnection(@"Data Source = AP-JJQOKZ7FBRKV\SQLEXPRESS; 
-                                                        Initial Catalog = Exercise_DB; Integrated Security = True  ");
+        private readonly SqlConnection _sqlConnection = new SqlConnection(@"DATA SOURCE = AP-JJQOKZ7FBRKV\SQLEXPRESS; 
+                                                        INITIAL CATALOG = Exercise_DB; INTEGRATED SECURITY = True  ");
 
-        public void openConnection()
+        public void OpenConnection()
         {
-            if (sqlConnection.State == System.Data.ConnectionState.Closed)
+            if (_sqlConnection.State == System.Data.ConnectionState.Closed)
             {
-                sqlConnection.Open();
+                _sqlConnection.Open();
             }
         }
 
-        public void closeConnection()
+        public void CloseConnection()
         {
-            if (sqlConnection.State == System.Data.ConnectionState.Open)
+            if (_sqlConnection.State == System.Data.ConnectionState.Open)
             {
-                sqlConnection.Close();
+                _sqlConnection.Close();
             }
         }
-        public SqlConnection getConnection()
+        public SqlConnection GetConnection()
         {
-            return sqlConnection;
+            return _sqlConnection;
         }
     }
 }

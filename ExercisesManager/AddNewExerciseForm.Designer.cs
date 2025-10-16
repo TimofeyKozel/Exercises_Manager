@@ -45,6 +45,7 @@
             this.ExerciseTxtBox.Name = "ExerciseTxtBox";
             this.ExerciseTxtBox.Size = new System.Drawing.Size(294, 20);
             this.ExerciseTxtBox.TabIndex = 0;
+            this.ExerciseTxtBox.TextChanged += new System.EventHandler(this.ExerciseTxtBox_TextChanged);
             // 
             // DateTxtBox
             // 
@@ -53,6 +54,7 @@
             this.DateTxtBox.Name = "DateTxtBox";
             this.DateTxtBox.Size = new System.Drawing.Size(294, 20);
             this.DateTxtBox.TabIndex = 1;
+            this.DateTxtBox.TextChanged += new System.EventHandler(this.DateTxtBox_TextChanged);
             // 
             // label1
             // 
@@ -130,6 +132,7 @@
             // 
             // AddNewExerciseForm
             // 
+            this.AcceptButton = this.CmdAddExerciseToTable;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
@@ -145,6 +148,7 @@
             this.Name = "AddNewExerciseForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "NewExercise";
+            this.Load += new System.EventHandler(this.AddNewExerciseForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
